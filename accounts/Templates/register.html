@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+            * {box-sizing: border-box;}
+
+            .input-container {
+            display: -ms-flexbox; /* IE10 */
+            display: flex;
+            width: 100%;
+            margin-bottom: 15px;
+            }
+
+            .icon {
+                padding: 10px;
+                background: dodgerblue;
+                color: white;
+                min-width: 50px;
+                text-align: center;
+                }
+
+            .input-field {
+                width: 100%;
+                padding: 10px;
+                outline: none;
+                }
+
+            .input-field:focus {
+                border: 2px solid dodgerblue;
+            }
+
+            /* Set a style for the submit button */
+            .btn {
+                 background-color: dodgerblue;
+                 color: white;
+                 padding: 15px 20px;
+                 border: none;
+                 cursor: pointer;
+                 width: 100%;
+                 opacity: 0.9;
+                }
+
+            .btn:hover {
+                opacity: 1;
+            }
+            </style>
+    <body background="{% static 'images/Back1.jpg' %}">
+
+        </head>
+    <body >
+        
+          
+        <form action="register" method="post">
+            {% csrf_token %}
+            <center><h2 style="color:dodgerblue;font-size:40px;">Registeration Panel</h2></center>
+            <div class="input-container">
+            <i class="fa fa-user icon"></i>
+            <input class="input-field" type="text" placeholder="First Name" name="first_name">
+            </div>
+            <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input class="input-field" type="text" placeholder="Last Name" name="last_name">
+              </div>
+              <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input class="input-field" type="text" placeholder="User Name" name="user_name">
+              </div>
+            <div class="input-container">
+                <i class="fa fa-envelope icon"></i>
+                <input class="input-field" type="text" placeholder="Email" name="Email">
+            </div>
+            
+            <div class="input-container">
+                <i class="fa fa-key icon"></i>
+                <input class="input-field" type="password" placeholder="Password" name="Password">
+              </div>
+              <div class="input-container">
+                <i class="fa fa-key icon"></i>
+                <input class="input-field" type="password" placeholder="Confrim Password" name="repeat_password">
+              </div>
+              <button type="submit" class="btn">Register</button>
+            </div  >
+        </form>
+        
+        
+            {% for message in messages %}
+            <div class="alert alert-danger">
+            <strong>Danger!</strong>{{message}}</div>
+            {% endfor %}
+        
+
+    </body>
+</html>

@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<style>
+	.my{
+		text-align: start;
+	}
+	
+</style>
+<h1>Random Number is {{ x }}</h1>
+
+<html>
+<title>Guessing Game</title>
+<!-- <b><h3 style="color: red;font-size: large;">You will get only 5 attempts</h3></b> -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body></body>
+<form action="logic" method="post">
+{% for message in messages %}
+<div class="alert alert-danger">
+ <strong>Danger!</strong>{{message}}</div>
+
+
+{% endfor %}
+{% csrf_token %}
+{% if user.is_authenticated %}
+<div style="position: absolute;left: 28%;top: 60%;"> 
+<b style="color:rgb(0, 10, 0); font-size: x-large; background-color: whitesmoke;">Guess the Number &nbsp;&nbsp;<input type="text" id="Guess" placeholder="Enter any Number" style='padding: 5px'><br></b>
+<div style="position: absolute;left: 25%;top: 200%;">
+<b style="color:rgb(0, 10, 0); font-size:large"><button type="button" name="Check" style='padding: 5px' onclick="logic();">Check</b></div>
+<div style="position: absolute;left: 50%;top: 200%;">
+<b style="color:rgb(0, 10, 0);font-size:large"><button name="cancle" type="submit" value="Cancle" style='padding: 5px'>Back</button></b></div>
+
+</div>
+
+<img src="{% static 'images/Guess2.jpg' %}" alt="Guess" style="width:100%"> 
+{% endif %} 
+
+</form>
+</body>
+<script type="text/javascript">
+	
+
+	//console.log(a);
+	var i=0
+	var score=50
+	function logic()
+	{   	
+		
+		var ran=document.getElementById("Guess").value;
+		var a = "{{x}}";
+		var ran=parseInt(ran)
+		var a=parseInt(a)
+		if (ran==a){
+			alert("You Win Your Guess is correct ")
+			alert("You Scored:"+score) 
+			location.reload(true)
+			
+
+			} 
+		else if (ran>a){
+			alert("Your Number is Greater Remaining "+(4-i)+" attempts only")
+			score=score-10;
+			i=i+1
+		}
+		else
+		{
+			alert("Your Number is Smaller and Remaining "+(4-i)+" attempts only")
+			score=score-10;
+			i=i+1
+			
+			
+		}
+		//document.getElementById('Guess').value = ''"
+		//alert(i)
+		if (i==5)
+		{
+			alert("Game Over You have exceed your attempts Play Again")
+			alert("Your Score "+score)
+			//url: '/update_score/',
+         	//data: {'score': score},
+			//type: 'POST'
+			 location.reload(true)
+			//break;
+		}
+		
+		//console.log(i)
+	}
+	
+ </script> 
+
+</html>
